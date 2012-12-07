@@ -10,7 +10,7 @@ class LpReceipt < Sinatra::Base
   post '/print_receipt' do
     order_details = MultiJson.load(request.body.read.to_s)
     order = ShopifyOrder.new(order_details)
-    Typhoeus.post('http://remote.bergcloud.com/playground/direct_print/FXSX8DZJFVPX', :params => {:html => order.to_html(request.host)})
+    Typhoeus.post("http://remote.bergcloud.com/playground/direct_print/#{ENV['PRINTER_KEY']}", :params => {:html => order.to_html(request.host)})
     "OK"
   end
 
