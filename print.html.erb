@@ -1,0 +1,99 @@
+<html>
+  <head>
+    <style>
+      * {
+        margin:0;
+        padding:0;
+        font-weight:normal;
+        font-size:1em;
+        line-height:1.3em;
+      }
+      body {
+        width:384px;
+        font-size: 15px;
+        font-family:'Signika'
+      }
+      img.logo {
+        display:block;
+        margin: 0 auto;
+      }
+      h1 {
+        font-size:1.8em;
+        text-align:center;
+        margin-bottom:0.2em;
+        font-family:'Georgia';
+      }
+
+      .order_number {
+        text-align:center;
+        margin-bottom:1.3em;
+        font-size:1.2em;
+      }
+
+      .line_items {
+        font-size:1.5em;
+      }
+
+      .line_items li.first {
+        border-top: 1px dashed #000;
+      }
+
+      .line_items li {
+        border-bottom: 1px dashed #000;
+        padding-bottom:6px;
+        padding-top:6px;
+        clear:both;
+      }
+
+      .line_items p {
+        padding-left:60px;
+        background-image: url('http://<%= host %>/checkbox.png');
+        background-repeat:no-repeat;
+        background-position:15px center;
+      }
+
+      .order_details_box {
+        margin-top:5px;
+      }
+      .order_details_box img {
+        float:left;
+      }
+
+      .order_details {
+        padding-top:18px;
+      }
+
+      .help {
+        clear:both;
+        border-top: 1px dashed #000;
+        text-align:center;
+        font-size:1.2em;
+        padding:10px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="http://backoffice.flexiscale.co/static/assets/mono_logo.png" class="logo" />
+    <h1>Order for <%= order.shipping_address['name'] %></h1>
+    <h2 class="order_number">Order number <%= order.order_number %></h2>
+    <ul class="line_items">
+      <% order.line_items.each_with_index do |line_item, i| %>
+        <li<%= ' class="first"' if i == 0 %>>
+          <p>
+            <span class="name"><%= line_item['name'] %></span>
+            <br />
+            <span class="sku"><%= line_item['sku'] %></span>
+          </p>
+        </li>
+      <% end %>
+    </ul>
+    <div class="order_details_box">
+      <img src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=http%3A%2F%2Fbackoffice.flexiscale.co%2Forder%2F<%= order.order_number %>">
+      <div class="order_details">
+        <h2>Shipping to:</h2>
+        <p><%= order.full_shipping_address %></p>
+      </div>
+    </div>
+    <p class="help">Help at: http://flexiscale.co</p>
+  </body>
+</html>
