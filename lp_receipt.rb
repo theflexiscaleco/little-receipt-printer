@@ -1,6 +1,6 @@
 require 'sinatra/base'
 class LpReceipt < Sinatra::Base
   post '/print_receipt' do
-    'hello'
+    puts params
   end
 end
