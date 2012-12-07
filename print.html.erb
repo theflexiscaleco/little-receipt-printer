@@ -20,8 +20,7 @@
       h1 {
         font-size:1.8em;
         text-align:center;
-        margin-bottom:0.2em;
-        font-family:'Georgia';
+        margin-bottom:0.1em;
       }
 
       .order_number {
@@ -40,9 +39,7 @@
 
       .line_items li {
         border-bottom: 1px dashed #000;
-        padding-bottom:6px;
-        padding-top:6px;
-        clear:both;
+        padding:6px 0;
       }
 
       .line_items p {
@@ -51,6 +48,10 @@
         background-repeat:no-repeat;
         background-position:15px center;
       }
+      
+      .line_items .sku {
+        font-size:0.8em;
+      }
 
       .order_details_box {
         margin-top:5px;
@@ -58,7 +59,6 @@
       .order_details_box img {
         float:left;
       }
-
       .order_details {
         padding-top:18px;
       }
@@ -75,7 +75,7 @@
   <body>
     <img src="http://backoffice.flexiscale.co/static/assets/mono_logo.png" class="logo" />
     <h1>Order for <%= order.shipping_address['name'] %></h1>
-    <h2 class="order_number">Order number <%= order.order_number %></h2>
+    <h2 class="order_number">Number <%= order.order_number %></h2>
     <ul class="line_items">
       <% order.line_items.each_with_index do |line_item, i| %>
         <li<%= ' class="first"' if i == 0 %>>
@@ -94,6 +94,6 @@
         <p><%= order.full_shipping_address %></p>
       </div>
     </div>
-    <p class="help">Help at: http://flexiscale.co</p>
+    <p class="help">help@flexiscale.co</p>
   </body>
 </html>
