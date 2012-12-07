@@ -1,5 +1,5 @@
 require 'rspec'
-require './shopify_order'
+require './lib/shopify_order'
 require 'multi_json'
 
 describe ShopifyOrder do
@@ -12,7 +12,12 @@ describe ShopifyOrder do
   end
   describe "full shipping address" do
     it "should assemble the test case well" do
-      @order.full_shipping_address.should == "Steve Shipper\nShipping Company\n123 Shipping Street\nShippington\nK2P0S0\nUnited States"
+      @order.full_shipping_address.should == "Steve Shipper<br />Shipping Company<br />123 Shipping Street<br />Shippington<br />K2P0S0"
+    end
+  end
+  describe "to html" do
+    it "should create some html with the person's name in" do
+      @order.to_html.should include('Steve Shipper')
     end
   end
 end
