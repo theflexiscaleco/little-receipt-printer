@@ -70,6 +70,16 @@
         font-size:1.2em;
         padding:10px 0;
       }
+      
+      .tax {
+        margin-top:1em;
+        width:100%;
+      }
+      
+      .tax .title {
+        text-align:right;
+        padding-right:10px;
+      }
     </style>
   </head>
   <body>
@@ -87,6 +97,22 @@
         </li>
       <% end %>
     </ul>
+    <table class="tax">
+      <tr>
+        <td class="title">Total</td>
+        <td>£<%= order.total_price %></td>
+      </tr>
+      <% order.tax_lines.each do |tax_line| %>
+        <tr>
+          <td class="title"><%= tax_line['title'] %></td>
+          <td>£<%= tax_line['price'] %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td class="title">VAT No.</td>
+        <td>972751884</td>
+      </tr>
+    </table>
     <div class="order_details_box">
       <img src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=http%3A%2F%2Fbackoffice.flexiscale.co%2Forder%2F<%= order.id %>">
       <div class="order_details">
