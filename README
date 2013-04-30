@@ -5,6 +5,6 @@ To deploy: checkout code locally, and install heroku toolkit.
 From the root directory:
 heroku create
 heroku config:add PRINTER_KEY=YOURDIRECTPRINTKEY
-git push heroku
+git push heroku master
 
 Then add your heroku url, with the path of /print_receipt to your shopify webhooks to send json on order payment.
